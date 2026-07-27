@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bending — Phase 1 (Fire)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Landing / permission screen -->
+  <section id="landing" class="screen">
+    <div class="panel">
+      <h1>Bending</h1>
+      <p class="pitch">Conjure and throw fire with your bare hands, using your webcam.</p>
+      <p class="privacy">Everything runs on your device. Nothing is recorded or uploaded.</p>
+      <button id="start-btn" type="button">Allow camera &amp; begin</button>
+      <p id="landing-error" class="error-line" hidden></p>
+    </div>
+  </section>
+
+  <!-- Loading screen (model download) -->
+  <section id="loading" class="screen" hidden>
+    <div class="panel">
+      <div class="spinner" aria-hidden="true"></div>
+      <p>Loading hand tracking model&hellip;</p>
+    </div>
+  </section>
+
+  <!-- Camera denied / error screen -->
+  <section id="error-screen" class="screen" hidden>
+    <div class="panel">
+      <h2>Couldn't start the camera</h2>
+      <p id="error-message">Something went wrong.</p>
+      <button id="retry-btn" type="button">Try again</button>
+    </div>
+  </section>
+
+  <!-- Main experience -->
+  <section id="experience" class="screen" hidden>
+    <div class="stage">
+      <canvas id="video-canvas"></canvas>
+      <canvas id="fx-canvas"></canvas>
+    </div>
+
+    <div class="hud">
+      <div class="panel coach" id="coach">
+        Make a fist to gather &middot; open your hand to unleash
+      </div>
+      <div class="panel no-hand" id="no-hand-hint" hidden>
+        Show me your hand &#9995;
+      </div>
+      <label class="panel tracking-toggle">
+        <input type="checkbox" id="show-tracking" checked />
+        Show tracking
+      </label>
+    </div>
+  </section>
+
+  <!-- Video element feeding the canvases; never shown directly -->
+  <video id="webcam" playsinline autoplay muted hidden></video>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
