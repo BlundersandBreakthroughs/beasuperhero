@@ -3,22 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bending — Phase 1 (Fire)</title>
+  <title>Bending</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <!-- Landing / permission screen -->
+<body data-element="fire">
+  <!-- Mobile / small-screen gate -->
+  <section id="mobile-gate" class="screen" hidden>
+    <div class="panel">
+      <h2>Laptop or desktop needed</h2>
+      <p>
+        Bending needs a bigger screen and a webcam to track your hands.
+        Please open this link on a laptop or desktop computer instead.
+      </p>
+    </div>
+  </section>
+
+  <!-- Landing / permission pre-screen -->
   <section id="landing" class="screen">
     <div class="panel">
       <h1>Bending</h1>
-      <p class="pitch">Conjure and throw fire with your bare hands, using your webcam.</p>
+      <p class="pitch">Conjure and throw fire, water, and air with your bare hands, using your webcam.</p>
       <p class="privacy">Everything runs on your device. Nothing is recorded or uploaded.</p>
       <button id="start-btn" type="button">Allow camera &amp; begin</button>
       <p id="landing-error" class="error-line" hidden></p>
     </div>
   </section>
 
-  <!-- Loading screen (model download) -->
+  <!-- Loading state -->
   <section id="loading" class="screen" hidden>
     <div class="panel">
       <div class="spinner" aria-hidden="true"></div>
@@ -26,7 +43,7 @@
     </div>
   </section>
 
-  <!-- Camera denied / error screen -->
+  <!-- Camera-denied / error state -->
   <section id="error-screen" class="screen" hidden>
     <div class="panel">
       <h2>Couldn't start the camera</h2>
@@ -41,6 +58,15 @@
       <canvas id="video-canvas"></canvas>
       <canvas id="fx-canvas"></canvas>
     </div>
+
+    <header class="top-bar">
+      <div class="wordmark">Bending</div>
+      <div class="panel element-toggle" role="group" aria-label="Element">
+        <button type="button" class="element-btn active" data-element="fire" aria-pressed="true">Fire</button>
+        <button type="button" class="element-btn" data-element="water" aria-pressed="false">Water</button>
+        <button type="button" class="element-btn" data-element="air" aria-pressed="false">Air</button>
+      </div>
+    </header>
 
     <div class="hud">
       <div class="panel coach" id="coach">
